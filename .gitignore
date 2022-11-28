@@ -1,6 +1,5 @@
 .gradle
 .idea
-FX_Compiler.iml
 gradlew
 gradlew.bat
 settings.gradle

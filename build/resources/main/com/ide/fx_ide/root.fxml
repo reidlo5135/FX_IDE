@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.ToolBar?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ide.fx_ide.root.RootController" prefWidth="485" prefHeight="380">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <children>
+        <MenuBar fx:id="mb_top" id="mb_top" prefWidth="1680" prefHeight="30" />
+        <TextArea fx:id="ta_code" id="ta_code" layoutX="480" layoutY="30" prefWidth="1200" prefHeight="650" />
+    </children>
+</AnchorPane>
