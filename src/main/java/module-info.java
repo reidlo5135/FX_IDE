@@ -5,6 +5,6 @@ module com.ide.fx_ide {
 
     opens com.ide.fx_ide to javafx.fxml;
     exports com.ide.fx_ide;
-    exports com.ide.fx_ide.home;
-    opens com.ide.fx_ide.home to javafx.fxml;
+    exports com.ide.fx_ide.root;
+    opens com.ide.fx_ide.root to javafx.fxml;
 }
