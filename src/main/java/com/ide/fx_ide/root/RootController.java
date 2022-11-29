@@ -13,16 +13,17 @@ public class RootController implements Initializable {
     @FXML private MenuBar mb_top;
     @FXML private TextArea ta_code;
 
-    private static final String[] mb_top_arr = {"File", "Edit", "View", "Navigate", "Code", "Refactor", "Build", "Run", "Tools", "Git", "Window", "Help"};
+    private static final String DEFAULT_CODE = "class Main {\n\tpublic static void main(String[] args) {\n\n\t}\n}";
+    private static final String[] DEFAULT_TOP_MENU = {"File", "Edit", "View", "Navigate", "Code", "Refactor", "Build", "Run", "Tools", "Git", "Window", "Help"};
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setMb_top_arr(mb_top);
-        ta_code.setText("class Main {\n\tpublic static void main(String[] args) {\n\n\t}\n}");
+        setDefaultTopMenu(mb_top);
+        ta_code.setText(DEFAULT_CODE);
     }
 
-    private static void setMb_top_arr(MenuBar menuBar) {
-        for(String str : mb_top_arr) {
+    private static void setDefaultTopMenu(MenuBar menuBar) {
+        for(String str : DEFAULT_TOP_MENU) {
             menuBar.getMenus().add(new Menu(str));
         }
     }

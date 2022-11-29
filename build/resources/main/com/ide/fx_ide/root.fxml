@@ -4,7 +4,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.ToolBar?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ide.fx_ide.root.RootController" prefWidth="485" prefHeight="380">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
