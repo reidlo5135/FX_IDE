@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainApplication extends Application {
     private static final String DIRECTORY_CSS = "static/css/";
@@ -27,7 +28,7 @@ public class MainApplication extends Application {
     }
 
     private static void setResources(Stage stage, Scene scene) {
-        scene.getStylesheets().add(MainApplication.class.getResource(DIRECTORY_CSS + "root.css").toString());
-        stage.getIcons().add(new Image(MainApplication.class.getResource(DIRECTORY_IMAGE + "favicon.png").toString()));
+        scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_CSS + "root.css")).toString());
+        stage.getIcons().add(new Image(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_IMAGE + "favicon.png")).toString()));
     }
 }
