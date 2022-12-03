@@ -15,11 +15,11 @@
     <children>
         <MenuBar fx:id="mb_top" id="mb_top" prefWidth="1580" prefHeight="30" />
         <TextArea fx:id="ta_code" id="ta_code" layoutX="480" layoutY="30" prefWidth="1200" prefHeight="550" />
-        <Button fx:id="btn_compile" onAction="#onCompileButtonClick" id="btn_compile" layoutX="1620" layoutY="580">
+        <Button fx:id="btn_compile" onAction="#onCompileButtonClick" id="btn_compile" layoutX="1580">
             <graphic>
-                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitWidth="20.0" fitHeight="21.0" pickOnBounds="true" preserveRatio="true" >
                     <image>
-                        <Image url="@static/image/play-solid.svg"/>
+                        <Image url="@static/image/compile.png"/>
                     </image>
                 </ImageView>
             </graphic>
