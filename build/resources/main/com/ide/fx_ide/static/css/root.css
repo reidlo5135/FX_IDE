@@ -2,3 +2,8 @@
     -fx-font-family: "sans-serif";
     -fx-font-size: 20px;
 }
+
+#btn_compile {
+    -fx-background-color: transparent;
+    -fx-cursor: pointer;
+}
