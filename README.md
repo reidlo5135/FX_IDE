@@ -7,14 +7,13 @@
 
 ## **<b>사용기술</b>**
 <span><img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=JAVA&logoColor=White">
-<span><img src="https://img.shields.io/badge/JAVAFX-007396?style=for-the-badge&logo=JAVA&logoColor=White">
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
+<img src="https://img.shields.io/badge/JAVAFX-007396?style=for-the-badge&logo=JAVA&logoColor=White">
+<img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/Intellij IDEA-000000?style=for-the-badge&logo=IntelliJ Idea&logoColor=white"></span>
 
-- Client - Java 11, JavaFX 0.0.10
-- Database - MySQL 8.0
+- Client - Java 11, JavaFX 0.0.10, CSS3
 - Version Control - Git, Github
 - IDE - IntelliJ IDEA Ultimate
 

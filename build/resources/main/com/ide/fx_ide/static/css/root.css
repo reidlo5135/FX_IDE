@@ -11,7 +11,7 @@
 }
 
 #ta_code:focused, #ta_result:focused {
-    -fx-border-color: black;
+    -fx-border-color: white;
 }
 
 #btn_compile {
