@@ -15,6 +15,7 @@ public class RootController implements Initializable {
     @FXML private MenuBar mb_top;
     @FXML private TextArea ta_code;
     @FXML private Button btn_compile;
+    @FXML private TextArea ta_result;
 
     private static final String DEFAULT_CODE = "class Main {\n\tpublic static void main(String[] args) {\n\n\t}\n}";
     private static final String[] DEFAULT_TOP_MENU = {"File", "Edit", "View", "Navigate", "Code", "Refactor", "Build", "Run", "Tools", "Git", "Window", "Help"};
