@@ -79,11 +79,11 @@ public class CompilerService {
                     result.remove(outputLine);
                     continue;
                 }
-                if(outputLine.equals("c:\\.rde\\temp>java Main.java")) {
+                if(outputLine.contains("java")) {
                     result.remove(outputLine);
                     continue;
                 }
-                if(outputLine.equals("c:\\.rde\\temp>exit")) {
+                if(outputLine.contains("exit")) {
                     result.remove(outputLine);
                     break;
                 }

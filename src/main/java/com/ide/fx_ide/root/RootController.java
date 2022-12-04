@@ -9,6 +9,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class RootController implements Initializable {
@@ -35,8 +36,14 @@ public class RootController implements Initializable {
 
     @FXML
     protected void onCompileButtonClick() {
-        String beforeCompile = ta_code.getText();
-        System.out.println("beforeCompile : " + beforeCompile);
-        System.out.println(compilerService.compileAfterConvertFile(beforeCompile).get(1));
+        List<String> compileResult = compilerService.compileAfterConvertFile(ta_code.getText());
+        System.out.println("CompileResult : " + compileResult);
+        if(compileResult.size() > 1) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(compileResult.get(0));
+            stringBuilder.append("\n");
+            stringBuilder.append(compileResult.get(1));
+            ta_result.setText(stringBuilder.toString());
+        }
     }
 }
