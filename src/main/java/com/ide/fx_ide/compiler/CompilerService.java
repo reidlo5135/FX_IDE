@@ -1,7 +1,9 @@
 package com.ide.fx_ide.compiler;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -94,5 +96,23 @@ public class CompilerService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String convertCompileResultToString(List<String> compileResult) {
+        StringBuilder sb = new StringBuilder();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("a HH:mm:ss");
+
+        sb.append(simpleDateFormat.format(new Date())).append(": Executing ':Main.main()'...");
+        sb.append("\n\n\n");
+
+        for(String str : compileResult) {
+            System.out.println("str : " + str);
+            sb.append(str);
+            sb.append("\n");
+        }
+
+        System.out.println("sb : " + sb);
+
+        return sb.toString();
     }
 }
