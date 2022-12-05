@@ -16,10 +16,10 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("root.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1680, 840);
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 740);
         stage.setScene(scene);
-        stage.setResizable(false);
         setResources(stage, scene);
+        stage.setResizable(false);
         stage.show();
     }
 
