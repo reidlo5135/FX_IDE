@@ -38,12 +38,6 @@ public class RootController implements Initializable {
     protected void onCompileButtonClick() {
         List<String> compileResult = compilerService.compileAfterConvertFile(ta_code.getText());
         System.out.println("CompileResult : " + compileResult);
-        if(compileResult.size() > 1) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(compileResult.get(0));
-            stringBuilder.append("\n");
-            stringBuilder.append(compileResult.get(1));
-            ta_result.setText(stringBuilder.toString());
-        }
+        ta_result.setText(compilerService.convertCompileResultToString(compileResult));
     }
 }
