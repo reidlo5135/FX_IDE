@@ -1,6 +1,6 @@
 package com.ide.fx_ide.editor;
 
-import com.ide.fx_ide.compiler.CompilerService;
+import com.ide.fx_ide.file.FileService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -21,10 +21,11 @@ public class EditorController implements Initializable {
     private static final String DEFAULT_CODE = "class Main {\n\tpublic static void main(String[] args) {\n\n\t}\n}";
     private static final String[] DEFAULT_TOP_MENU = {"File", "Edit", "View", "Navigate", "Code", "Refactor", "Build", "Run", "Tools", "Git", "Window", "Help"};
 
-    private final CompilerService compilerService = new CompilerService();
+    private FileService fileService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        fileService = new FileService();
         setDefaultTopMenu(mb_top);
         ta_code.setText(DEFAULT_CODE);
     }
@@ -37,8 +38,8 @@ public class EditorController implements Initializable {
 
     @FXML
     protected void onCompileButtonClick() {
-        List<String> compileResult = compilerService.compileAfterConvertFile(ta_code.getText());
+        List<String> compileResult = fileService.compileAfterConvertFile(ta_code.getText());
         System.out.println("CompileResult : " + compileResult);
-        ta_result.setText(compilerService.convertCompileResultToString(compileResult));
+        ta_result.setText(fileService.convertCompileResultToString(compileResult));
     }
 }

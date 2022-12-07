@@ -1,4 +1,4 @@
-package com.ide.fx_ide.root;
+package com.ide.fx_ide.file;
 
 import com.ide.fx_ide.MainApplication;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class RootController implements Initializable {
+public class FileController implements Initializable {
     @FXML
     private Button btn_convert;
 
@@ -25,18 +25,21 @@ public class RootController implements Initializable {
     private static final String DIRECTORY_IMAGE = "static/image/";
 
     private Stage stage;
+    private FileService fileService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        fileService = new FileService();
     }
 
     @FXML
     protected void onConvertButtonClick() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("java", ".java"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("java 파일", "*.java"));
 
         File file = fileChooser.showOpenDialog(stage);
+        System.out.println("file : " + file.getName());
+        System.out.println("readFile : " + fileService.getStringFromFile(file));
 
         Stage stage_editor = new Stage();
         Stage stage_root = (Stage) btn_convert.getScene().getWindow();
