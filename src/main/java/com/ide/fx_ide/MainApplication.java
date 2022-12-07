@@ -15,7 +15,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("root.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("file.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 740);
         stage.setScene(scene);
         setResources(stage, scene);
@@ -28,7 +28,7 @@ public class MainApplication extends Application {
     }
 
     private static void setResources(Stage stage, Scene scene) {
-        scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_CSS + "root.css")).toString());
+        scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_CSS + "file.css")).toString());
         stage.getIcons().add(new Image(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_IMAGE + "favicon.png")).toString()));
     }
 }

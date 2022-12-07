@@ -1,4 +1,4 @@
-package com.ide.fx_ide.compiler;
+package com.ide.fx_ide.file;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class CompilerService {
+public class FileService {
 
     public List<String> compileAfterConvertFile(String beforeCompile) {
         System.out.println("Compile SVC compileAfterConvertFile beforeCompile : " + beforeCompile);
@@ -114,5 +114,20 @@ public class CompilerService {
         System.out.println("sb : " + sb);
 
         return sb.toString();
+    }
+
+    public String getStringFromFile(File file) {
+        StringBuilder text = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line;
+            while((line = br.readLine()) != null) {
+                text.append(line);
+                text.append("\n");
+            }
+        } catch (IOException fne) {
+            fne.printStackTrace();
+        }
+        return text.toString();
     }
 }
