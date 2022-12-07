@@ -3,6 +3,7 @@ package com.ide.fx_ide.editor;
 import com.ide.fx_ide.file.FileService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class EditorController implements Initializable {
@@ -28,6 +30,14 @@ public class EditorController implements Initializable {
         fileService = new FileService();
         setDefaultTopMenu(mb_top);
         ta_code.setText(DEFAULT_CODE);
+        System.out.println("EditorController initialized");
+    }
+
+    @FXML
+    protected void onCompileButtonClick() {
+        List<String> compileResult = fileService.compileAfterConvertFile(ta_code.getText());
+        System.out.println("CompileResult : " + compileResult);
+        ta_result.setText(fileService.convertCompileResultToString(compileResult));
     }
 
     private static void setDefaultTopMenu(MenuBar menuBar) {
@@ -36,10 +46,8 @@ public class EditorController implements Initializable {
         }
     }
 
-    @FXML
-    protected void onCompileButtonClick() {
-        List<String> compileResult = fileService.compileAfterConvertFile(ta_code.getText());
-        System.out.println("CompileResult : " + compileResult);
-        ta_result.setText(fileService.convertCompileResultToString(compileResult));
+    public void initData(Map<String, String> data) {
+        System.out.println("initData : " + data);
+        ta_code.setText(data.get("read"));
     }
 }

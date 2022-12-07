@@ -1,11 +1,11 @@
 package com.ide.fx_ide.file;
 
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FileService {
 
@@ -114,6 +114,22 @@ public class FileService {
         System.out.println("sb : " + sb);
 
         return sb.toString();
+    }
+
+    protected Map<String, String> setFileChooser(Stage stage) {
+        Map<String, String> map = new HashMap<>();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("java 파일", "*.java"));
+        fileChooser.setInitialDirectory(new File("C:\\Build-Craft\\src\\main\\java\\com\\buildcraft"));
+
+        File file = fileChooser.showOpenDialog(stage);
+
+        map.put("name", file.getName());
+        map.put("path", file.getPath());
+        map.put("read", getStringFromFile(file));
+
+        return map;
     }
 
     public String getStringFromFile(File file) {
