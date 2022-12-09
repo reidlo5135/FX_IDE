@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.Objects;
@@ -25,33 +24,36 @@ public class FileController implements Initializable {
 
     private Stage stage;
     private FileService fileService;
-    private EditorController editorController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("FileController initialized");
         fileService = new FileService();
-        editorController = new EditorController();
     }
 
     @FXML
     protected void onConvertButtonClick() {
+        System.out.println("ConvertButton Clicked");
         Map<String, String> map = fileService.setFileChooser(stage);
-
-        Stage stage_editor = new Stage();
         Stage stage_file = (Stage) btn_convert.getScene().getWindow();
 
         try {
-            Parent fxmlEditor = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("editor.fxml")));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApplication.class.getResource("editor.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            EditorController editorController = loader.getController();
+            editorController.initData(map.get("code"));
 
-            Scene scene_editor = new Scene(fxmlEditor, 1680, 840);
-            stage_editor.setScene(scene_editor);
+            Stage stage_editor = new Stage();
+            stage_editor.setScene(scene);
             stage_editor.setTitle(map.get("path") + " - " + map.get("name"));
-            setResources(stage_editor, scene_editor);
+            setResources(stage_editor, scene);
             stage_editor.show();
 
             stage_file.close();
             stage_file.hide();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
