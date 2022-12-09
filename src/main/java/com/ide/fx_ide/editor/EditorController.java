@@ -7,14 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class EditorController implements Initializable {
-    @FXML AnchorPane subPage;
     @FXML private MenuBar mb_top;
     @FXML private TextArea ta_code;
     @FXML private Button btn_compile;
@@ -27,7 +25,6 @@ public class EditorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("EditorController initialized");
         fileService = new FileService();
         setDefaultTopMenu(mb_top);
     }
