@@ -1,4 +1,4 @@
-package com.ide.fx_ide.common;
+package com.ide.fx_ide.service.common;
 
 import com.ide.fx_ide.MainApplication;
 import javafx.scene.Scene;

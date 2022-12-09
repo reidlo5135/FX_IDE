@@ -1,22 +1,25 @@
-package com.ide.fx_ide.file;
+package com.ide.fx_ide.controller.root;
 
 import com.ide.fx_ide.MainApplication;
-import com.ide.fx_ide.common.CommonService;
-import com.ide.fx_ide.editor.EditorController;
+import com.ide.fx_ide.service.common.CommonService;
+import com.ide.fx_ide.service.file.FileService;
+import com.ide.fx_ide.controller.edit.EditorController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class FileController implements Initializable {
-    @FXML private Button btn_convert;
+public class RootController implements Initializable {
+    @FXML private Button btn_file;
+    @FXML private Label label_file;
 
     private Stage stage;
     private FileService fileService;
@@ -24,12 +27,13 @@ public class FileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileService = new FileService();
+        label_file.setText("Select .java file");
     }
 
     @FXML
     protected void onConvertButtonClick() {
         Map<String, String> map = fileService.setFileChooser(stage);
-        Stage stage_file = (Stage) btn_convert.getScene().getWindow();
+        Stage stage_file = (Stage) btn_file.getScene().getWindow();
         String title = map.get("path") + " - " + map.get("name");
 
         try {
