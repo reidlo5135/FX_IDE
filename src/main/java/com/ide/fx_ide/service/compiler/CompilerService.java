@@ -1,13 +1,13 @@
-package com.ide.fx_ide.file;
-
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+package com.ide.fx_ide.service.compiler;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
-public class FileService {
+public class CompilerService {
 
     public List<String> compileAfterConvertFile(String beforeCompile) {
         System.out.println("Compile SVC compileAfterConvertFile beforeCompile : " + beforeCompile);
@@ -42,7 +42,7 @@ public class FileService {
         return null;
     }
 
-    private List<String> compileFile(File file) {
+    private static List<String> compileFile(File file) {
         try {
             String[] commands = new String[] {"java " + file.getName(),"exit"};
 
@@ -114,36 +114,5 @@ public class FileService {
         System.out.println("sb : " + sb);
 
         return sb.toString();
-    }
-
-    protected Map<String, String> setFileChooser(Stage stage) {
-        Map<String, String> map = new HashMap<>();
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("java 파일", "*.java"));
-        fileChooser.setInitialDirectory(new File("C:\\Build-Craft\\src\\main\\java\\com\\buildcraft"));
-
-        File file = fileChooser.showOpenDialog(stage);
-
-        map.put("name", file.getName());
-        map.put("path", file.getPath());
-        map.put("code", getStringFromFile(file));
-
-        return map;
-    }
-
-    public String getStringFromFile(File file) {
-        StringBuilder text = new StringBuilder();
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            String line;
-            while((line = br.readLine()) != null) {
-                text.append(line);
-                text.append("\n");
-            }
-        } catch (IOException fne) {
-            fne.printStackTrace();
-        }
-        return text.toString();
     }
 }

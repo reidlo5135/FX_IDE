@@ -1,0 +1,9 @@
+#btn_file {
+    -fx-border-color: black;
+    -fx-cursor: pointer;
+}
+
+#label_file {
+    -fx-font-family: "sans-serif";
+    -fx-font-size: 20px;
+}

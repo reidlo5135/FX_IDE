@@ -1,41 +1,40 @@
-package com.ide.fx_ide.file;
+package com.ide.fx_ide.controller.root;
 
 import com.ide.fx_ide.MainApplication;
-import com.ide.fx_ide.editor.EditorController;
+import com.ide.fx_ide.service.common.CommonService;
+import com.ide.fx_ide.service.file.FileService;
+import com.ide.fx_ide.controller.edit.EditorController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Map;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class FileController implements Initializable {
-    @FXML private Button btn_convert;
-
-    private static final String DIRECTORY_CSS = "static/css/";
-    private static final String DIRECTORY_IMAGE = "static/image/";
+public class RootController implements Initializable {
+    @FXML private Button btn_file;
+    @FXML private Label label_file;
 
     private Stage stage;
     private FileService fileService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("FileController initialized");
         fileService = new FileService();
+        label_file.setText("Select .java file");
     }
 
     @FXML
     protected void onConvertButtonClick() {
-        System.out.println("ConvertButton Clicked");
         Map<String, String> map = fileService.setFileChooser(stage);
-        Stage stage_file = (Stage) btn_convert.getScene().getWindow();
+        Stage stage_file = (Stage) btn_file.getScene().getWindow();
+        String title = map.get("path") + " - " + map.get("name");
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -47,8 +46,8 @@ public class FileController implements Initializable {
 
             Stage stage_editor = new Stage();
             stage_editor.setScene(scene);
-            stage_editor.setTitle(map.get("path") + " - " + map.get("name"));
-            setResources(stage_editor, scene);
+            stage_editor.setTitle(title);
+            CommonService.setResources(stage_editor, scene, "editor.css", "favicon.png");
             stage_editor.show();
 
             stage_file.close();
@@ -56,10 +55,5 @@ public class FileController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static void setResources(Stage stage, Scene scene) {
-        scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_CSS + "editor.css")).toString());
-        stage.getIcons().add(new Image(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_IMAGE + "favicon.png")).toString()));
     }
 }
