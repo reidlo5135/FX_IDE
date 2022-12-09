@@ -17,7 +17,7 @@ public class FileService {
 
             if(!folder.exists()) {
                 if(folder.mkdirs()) {
-                    System.out.println("Compile SVC compileAfterConvertFile folder : "+ folder + " are generated");
+                    System.out.println("Compile SVC compileAfterConvertFile folder : " + folder + " are generated");
                 }
             }
 
@@ -127,7 +127,7 @@ public class FileService {
 
         map.put("name", file.getName());
         map.put("path", file.getPath());
-        map.put("read", getStringFromFile(file));
+        map.put("code", getStringFromFile(file));
 
         return map;
     }

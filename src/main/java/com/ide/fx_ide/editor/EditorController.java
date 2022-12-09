@@ -3,18 +3,18 @@ package com.ide.fx_ide.editor;
 import com.ide.fx_ide.file.FileService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class EditorController implements Initializable {
+    @FXML AnchorPane subPage;
     @FXML private MenuBar mb_top;
     @FXML private TextArea ta_code;
     @FXML private Button btn_compile;
@@ -27,10 +27,9 @@ public class EditorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("EditorController initialized");
         fileService = new FileService();
         setDefaultTopMenu(mb_top);
-        ta_code.setText(DEFAULT_CODE);
-        System.out.println("EditorController initialized");
     }
 
     @FXML
@@ -46,8 +45,8 @@ public class EditorController implements Initializable {
         }
     }
 
-    public void initData(Map<String, String> data) {
-        System.out.println("initData : " + data);
-        ta_code.setText(data.get("read"));
+    public void initData(String data) {
+        System.out.println("EditController initData: " + data);
+        ta_code.setText(data);
     }
 }
