@@ -7,21 +7,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <?import javafx.scene.control.Label?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ide.fx_ide.controller.root.RootController" prefHeight="400.0" prefWidth="600.0" >
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ide.fx_ide.controller.root.RootController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
    <children>
-       <Button fx:id="btn_file" id="btn_file" onAction="#onConvertButtonClick" layoutX="580" layoutY="290">
+       <Button fx:id="btn_select" id="btn_select" onAction="#onSelectButtonClick" layoutX="500" layoutY="290">
            <graphic>
-               <ImageView fitWidth="80.0" fitHeight="82.0" pickOnBounds="true" preserveRatio="true" >
+               <ImageView fitWidth="80" fitHeight="82" pickOnBounds="true" preserveRatio="true" >
                    <image>
                        <Image url="@static/image/folder.png"/>
                    </image>
                </ImageView>
            </graphic>
        </Button>
-       <Label fx:id="label_file" id="label_file" layoutX="560" layoutY="400" />
+       <Label fx:id="label_select" id="label_select" layoutX="480" layoutY="390" />
+
+       <Button fx:id="btn_new" id="btn_new" onAction="#onNewButtonClick" layoutX="680" layoutY="290">
+           <graphic>
+               <ImageView fitWidth="80" fitHeight="82" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@static/image/java.png"/>
+                   </image>
+               </ImageView>
+           </graphic>
+       </Button>
+       <Label fx:id="label_new" id="label_new" layoutX="640" layoutY="390" />
    </children>
 </AnchorPane>

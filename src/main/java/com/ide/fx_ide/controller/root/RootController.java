@@ -18,22 +18,24 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class RootController implements Initializable {
-    @FXML private Button btn_file;
-    @FXML private Label label_file;
+    @FXML private Button btn_select;
+    @FXML private Label label_select;
+    @FXML private Button btn_new;
+    @FXML private Label label_new;
 
     private Stage stage;
-    private FileService fileService;
+    private static final FileService fileService = new FileService();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fileService = new FileService();
-        label_file.setText("Select .java file");
+        label_select.setText("Select .java file");
+        label_new.setText("Create new .java file");
     }
 
     @FXML
-    protected void onConvertButtonClick() {
+    protected void onSelectButtonClick() {
         Map<String, String> map = fileService.setFileChooser(stage);
-        Stage stage_file = (Stage) btn_file.getScene().getWindow();
+        Stage stage_file = (Stage) btn_select.getScene().getWindow();
         String title = map.get("path") + " - " + map.get("name");
 
         try {
@@ -55,5 +57,10 @@ public class RootController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void onNewButtonClick() {
+        fileService.setDirectoryChooser(stage);
     }
 }
