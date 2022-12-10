@@ -42,7 +42,7 @@ public class RootController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApplication.class.getResource("editor.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 1680, 840);
             EditorController editorController = loader.getController();
             editorController.setTextArea(map.get("code"));
 
