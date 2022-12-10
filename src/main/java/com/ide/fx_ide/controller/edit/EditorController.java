@@ -1,7 +1,6 @@
 package com.ide.fx_ide.controller.edit;
 
 import com.ide.fx_ide.service.compiler.CompilerService;
-import com.ide.fx_ide.service.file.FileService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,16 +18,11 @@ public class EditorController implements Initializable {
     @FXML private Button btn_compile;
     @FXML private TextArea ta_result;
 
-    private static final String DEFAULT_CODE = "class Main {\n\tpublic static void main(String[] args) {\n\n\t}\n}";
+    private static final CompilerService compilerService = new CompilerService();
     private static final String[] DEFAULT_TOP_MENU = {"File", "Edit", "View", "Navigate", "Code", "Refactor", "Build", "Run", "Tools", "Git", "Window", "Help"};
-
-    private FileService fileService;
-    private CompilerService compilerService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fileService = new FileService();
-        compilerService = new CompilerService();
         setDefaultTopMenu(mb_top);
     }
 
@@ -39,14 +33,14 @@ public class EditorController implements Initializable {
         ta_result.setText(compilerService.convertCompileResultToString(compileResult));
     }
 
+    public void setTextArea(String data) {
+        System.out.println("EditController initData: " + data);
+        ta_code.setText(data);
+    }
+
     private static void setDefaultTopMenu(MenuBar menuBar) {
         for (String str : DEFAULT_TOP_MENU) {
             menuBar.getMenus().add(new Menu(str));
         }
-    }
-
-    public void setTextArea(String data) {
-        System.out.println("EditController initData: " + data);
-        ta_code.setText(data);
     }
 }
