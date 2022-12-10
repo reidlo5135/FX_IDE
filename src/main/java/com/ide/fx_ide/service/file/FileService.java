@@ -1,5 +1,6 @@
 package com.ide.fx_ide.service.file;
 
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -20,12 +21,21 @@ public class FileService {
 
         map.put("name", file.getName());
         map.put("path", file.getPath());
-        map.put("code", getStringFromFile(file));
+        map.put("code", extract(file));
 
         return map;
     }
 
-    private static String getStringFromFile(File file) {
+    public void setDirectoryChooser(Stage stage) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setInitialDirectory(new File("C:\\"));
+
+        File file = directoryChooser.showDialog(stage);
+        System.out.println("directory name : " + file.getName());
+        System.out.println("directory path : " + file.getPath());
+    }
+
+    private static String extract(File file) {
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));

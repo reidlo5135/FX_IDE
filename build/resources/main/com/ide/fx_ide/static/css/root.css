@@ -1,9 +1,9 @@
-#btn_file {
+Button {
     -fx-border-color: black;
     -fx-cursor: pointer;
 }
 
-#label_file {
+Label {
     -fx-font-family: "sans-serif";
     -fx-font-size: 20px;
 }
