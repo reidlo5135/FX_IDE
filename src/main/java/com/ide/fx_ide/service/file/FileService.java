@@ -1,5 +1,6 @@
 package com.ide.fx_ide.service.file;
 
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -23,6 +24,15 @@ public class FileService {
         map.put("code", extract(file));
 
         return map;
+    }
+
+    public void setDirectoryChooser(Stage stage) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setInitialDirectory(new File("C:\\"));
+
+        File file = directoryChooser.showDialog(stage);
+        System.out.println("directory name : " + file.getName());
+        System.out.println("directory path : " + file.getPath());
     }
 
     private static String extract(File file) {
