@@ -42,7 +42,7 @@ public class RootController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             EditorController editorController = loader.getController();
-            editorController.initData(map.get("code"));
+            editorController.setTextArea(map.get("code"));
 
             Stage stage_editor = new Stage();
             stage_editor.setScene(scene);

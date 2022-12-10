@@ -20,12 +20,12 @@ public class FileService {
 
         map.put("name", file.getName());
         map.put("path", file.getPath());
-        map.put("code", getStringFromFile(file));
+        map.put("code", extract(file));
 
         return map;
     }
 
-    private static String getStringFromFile(File file) {
+    private static String extract(File file) {
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));

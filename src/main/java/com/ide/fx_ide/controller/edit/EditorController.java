@@ -40,12 +40,12 @@ public class EditorController implements Initializable {
     }
 
     private static void setDefaultTopMenu(MenuBar menuBar) {
-        for(String str : DEFAULT_TOP_MENU) {
+        for (String str : DEFAULT_TOP_MENU) {
             menuBar.getMenus().add(new Menu(str));
         }
     }
 
-    public void initData(String data) {
+    public void setTextArea(String data) {
         System.out.println("EditController initData: " + data);
         ta_code.setText(data);
     }
