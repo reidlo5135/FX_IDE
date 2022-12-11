@@ -33,6 +33,6 @@ public class RootController implements Initializable {
 
     @FXML
     protected void onNewButtonClick() {
-        fileService.setDirectoryChooser(stage);
+        CommonService.moveToCreateScene(fileService.setDirectoryChooser(stage), (Stage) btn_select.getScene().getWindow());
     }
 }
