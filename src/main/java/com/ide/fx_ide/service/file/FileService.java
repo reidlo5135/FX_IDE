@@ -26,13 +26,14 @@ public class FileService {
         return map;
     }
 
-    public void setDirectoryChooser(Stage stage) {
+    public String setDirectoryChooser(Stage stage) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setInitialDirectory(new File("C:\\"));
 
         File file = directoryChooser.showDialog(stage);
-        System.out.println("directory name : " + file.getName());
         System.out.println("directory path : " + file.getPath());
+
+        return file.getPath();
     }
 
     private static String extract(File file) {
