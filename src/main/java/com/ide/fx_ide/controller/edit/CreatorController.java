@@ -1,6 +1,7 @@
 package com.ide.fx_ide.controller.edit;
 
 import com.ide.fx_ide.service.common.CommonService;
+import com.ide.fx_ide.service.file.FileService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -37,6 +38,7 @@ public class CreatorController implements Initializable {
         data.put("name", name);
         data.put("code", code);
 
+        FileService.createNewFile(data);
         CommonService.moveToEditScene(data, (Stage) btn_create.getScene().getWindow());
     }
 
