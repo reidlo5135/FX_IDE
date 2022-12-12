@@ -5,6 +5,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class FileService {
 
     public String setDirectoryChooser(Stage stage) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setInitialDirectory(new File("C:\\"));
+        directoryChooser.setInitialDirectory(new File("C:\\test"));
 
         File file = directoryChooser.showDialog(stage);
         System.out.println("directory path : " + file.getPath());
@@ -47,19 +48,30 @@ public class FileService {
 
         try {
             File file = new File(path);
-            if(!file.exists()) file.createNewFile();
-
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
-
-            bufferedWriter.write(data.get("code"));
-            bufferedWriter.flush();
-            bufferedWriter.close();
+            if(!file.exists()) {
+                file.createNewFile();
+                writeCode(file, data.get("code"));
+            } else {
+                throw new FileAlreadyExistsException("File is Already Exist");
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }
 
-    private static String extract(File file) {
+    private static void writeCode(File file, String code) {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
+
+            bufferedWriter.write(code);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String extract(File file) {
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
@@ -68,8 +80,8 @@ public class FileService {
                 text.append(line);
                 text.append("\n");
             }
-        } catch (IOException fne) {
-            fne.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
         return text.toString();
     }
