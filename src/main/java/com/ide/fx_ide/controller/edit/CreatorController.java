@@ -39,12 +39,6 @@ public class CreatorController implements Initializable {
         data.put("name", name);
         data.put("code", code);
 
-//        if(!) {
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("ERROR!!");
-//            alert.setHeaderText("RDE");
-//            alert.setContentText("File is Already Exist in " + data.get("path"));
-//        }
         FileService.createNewFile(data);
         CommonService.moveToEditScene(data, (Stage) btn_create.getScene().getWindow());
     }
