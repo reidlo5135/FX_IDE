@@ -9,8 +9,10 @@ import java.util.Map;
 
 public class CompilerService {
 
-    public List<String> compileAfterConvertFile(String beforeCompile) {
+    public List<String> compileAfterConvertFile(String fileName, String beforeCompile) {
+        System.out.println("Compile SVC compileAfterConvertFile fileName : " + fileName);
         System.out.println("Compile SVC compileAfterConvertFile beforeCompile : " + beforeCompile);
+
         try {
             String path = "C:\\.rde\\temp\\";
             File folder = new File(path);
@@ -21,7 +23,6 @@ public class CompilerService {
                 }
             }
 
-            String fileName = "Main" + ".java";
             File file = new File(path, fileName);
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
