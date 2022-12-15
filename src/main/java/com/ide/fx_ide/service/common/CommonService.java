@@ -29,7 +29,7 @@ public class CommonService {
             Parent root = loader.load();
             Scene scene = new Scene(root, 1680, 840);
             EditorController editorController = loader.getController();
-            editorController.setTextArea(data.get("code"));
+            editorController.initData(data);
 
             Stage stage_editor = new Stage();
             stage_editor.setScene(scene);
