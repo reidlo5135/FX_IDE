@@ -1,5 +1,7 @@
 package com.ide.fx_ide.service.compiler;
 
+import com.ide.fx_ide.service.common.CommonService;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,11 +12,8 @@ import java.util.Map;
 public class CompilerService {
 
     public List<String> compileAfterConvertFile(String fileName, String beforeCompile) {
-        System.out.println("Compile SVC compileAfterConvertFile fileName : " + fileName);
-        System.out.println("Compile SVC compileAfterConvertFile beforeCompile : " + beforeCompile);
-
         try {
-            String path = "C:\\.rde\\temp\\";
+            String path = "C:\\.rde\\temp\\" + CommonService.setDateTimeFormat();
             File folder = new File(path);
 
             if(!folder.exists()) {
@@ -51,7 +50,7 @@ public class CompilerService {
             Map<String, String> env = pb.environment();
 
             pb.redirectErrorStream(true);
-            pb.directory(new File("C:\\.rde\\temp\\"));
+            pb.directory(new File("C:\\.rde\\temp\\" + CommonService.setDateTimeFormat()));
             System.out.println("PB environment : " + env);
 
             Process p = pb.start();

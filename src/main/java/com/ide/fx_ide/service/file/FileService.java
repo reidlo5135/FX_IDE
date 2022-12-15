@@ -17,7 +17,7 @@ public class FileService {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("java 파일", "*.java"));
-        fileChooser.setInitialDirectory(new File("C:\\"));
+        fileChooser.setInitialDirectory(new File("C:\\test"));
 
         File file = fileChooser.showOpenDialog(stage);
 
@@ -36,10 +36,6 @@ public class FileService {
         System.out.println("directory path : " + file.getPath());
 
         return file.getPath();
-    }
-
-    public static void createNewDirectory() {
-        File file = new File("C:\\");
     }
 
     public static void createNewFile(Map<String, String> data) {

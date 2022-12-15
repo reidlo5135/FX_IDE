@@ -34,6 +34,8 @@ javafx {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.fxmisc.richtext/richtextfx
+    implementation 'org.fxmisc.richtext:richtextfx:0.11.0'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
