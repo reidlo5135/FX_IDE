@@ -38,10 +38,6 @@ public class FileService {
         return file.getPath();
     }
 
-    public static void createNewDirectory() {
-        File file = new File("C:\\");
-    }
-
     public static void createNewFile(Map<String, String> data) {
         System.out.println("createNewFile data : " + data);
         String path = data.get("path") + "/" + data.get("name") + EXTENSION;

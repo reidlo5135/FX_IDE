@@ -29,12 +29,10 @@ public class EditorController implements Initializable {
     @FXML
     protected void onCompileButtonClick() {
         List<String> compileResult = compilerService.compileAfterConvertFile(label_name.getText() + DEFAULT_EXTENSION, ta_code.getText());
-        System.out.println("CompileResult : " + compileResult);
         ta_result.setText(compilerService.convertCompileResultToString(compileResult));
     }
 
     public void initData(Map<String, String> data) {
-        System.out.println("EditController initData: " + data);
         label_name.setText(data.get("name"));
         ta_code.setText(data.get("code"));
     }

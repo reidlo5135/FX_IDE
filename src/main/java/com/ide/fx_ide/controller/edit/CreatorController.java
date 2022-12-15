@@ -28,9 +28,6 @@ public class CreatorController implements Initializable {
     protected void onCreateButtonClick() {
         String path = label_path.getText();
         String name = tf_name.getText();
-        System.out.println("path : " + path);
-        System.out.println("name : " + name);
-
         String code = "public class " + name + " {\n\tpublic static void main(String[] args) {\n\n\t}\n}";
 
         Map<String, String> data = new HashMap<>();
