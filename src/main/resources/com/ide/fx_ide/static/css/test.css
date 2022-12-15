@@ -1,0 +1,35 @@
+.ca_code .text {
+    -fx-fill: #A9B7C6;
+}
+
+.keyword {
+    -fx-fill: #CC7832;
+    -fx-font-weight: bold;
+}
+.semicolon {
+    -fx-fill: #A9B7C6;
+    -fx-font-weight: bold;
+}
+.paren {
+    -fx-fill: #A9B7C6;
+    -fx-font-weight: bold;
+}
+.bracket {
+    -fx-fill: #A9B7C6;
+    -fx-font-weight: bold;
+}
+.brace {
+    -fx-fill: #A9B7C6;
+    -fx-font-weight: bold;
+}
+.string {
+    -fx-fill: #6A8759;
+}
+
+.comment {
+    -fx-fill: #2B2B2B;
+}
+
+/*.paragraph-box:has-caret {*/
+/*    -fx-background-color: #323232;*/
+/*}*/

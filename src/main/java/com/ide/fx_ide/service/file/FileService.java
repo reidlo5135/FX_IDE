@@ -17,7 +17,7 @@ public class FileService {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("java 파일", "*.java"));
-        fileChooser.setInitialDirectory(new File("C:\\"));
+        fileChooser.setInitialDirectory(new File("C:\\test"));
 
         File file = fileChooser.showOpenDialog(stage);
 
