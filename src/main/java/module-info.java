@@ -1,6 +1,7 @@
 module com.ide.fx_ide {
-    requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.controls;
+    requires org.fxmisc.richtext;
 
     exports com.ide.fx_ide;
     exports com.ide.fx_ide.service.file;
