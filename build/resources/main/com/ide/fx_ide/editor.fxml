@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ide.fx_ide.controller.edit.EditorController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
@@ -15,6 +16,7 @@
 
     <children>
         <MenuBar fx:id="mb_top" id="mb_top" prefWidth="1580" prefHeight="30" />
+        <Label fx:id="label_name" id="label_name" />
         <TextArea fx:id="ta_code" id="ta_code" layoutX="380" layoutY="30" prefWidth="1300" prefHeight="500" />
         <Button fx:id="btn_compile" onAction="#onCompileButtonClick" id="btn_compile" layoutX="1580">
             <graphic>

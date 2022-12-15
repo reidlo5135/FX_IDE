@@ -20,7 +20,6 @@ public class CreatorController implements Initializable {
     @FXML private Button btn_create;
 
     private Stage stage;
-    private static final String EXTENSION = ".java";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
