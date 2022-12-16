@@ -24,8 +24,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommonService {
-    private static final String DIRECTORY_CSS = "static/css/";
-    private static final String DIRECTORY_IMAGE = "static/image/";
+    private static final String DIRECTORY_VIEW = "view/";
+    private static final String DIRECTORY_CSS = "css/";
+    private static final String DIRECTORY_IMAGE = "image/";
     private static final String[] KEYWORDS = new String[] {
             "abstract", "replacedert", "boolean", "break", "byte",
             "case", "catch", "char", "clreplaced", "const",
@@ -38,7 +39,6 @@ public class CommonService {
             "switch", "synchronized", "this", "throw", "throws",
             "transient", "try", "void", "volatile", "while"
     };
-
     private static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
     private static final String PAREN_PATTERN = "\\(|\\)";
     private static final String BRACE_PATTERN = "\\{|\\}";
@@ -46,7 +46,6 @@ public class CommonService {
     private static final String SEMICOLON_PATTERN = "\\;";
     private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
     private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
-
     private static final Pattern PATTERN = Pattern.compile(
             "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
                     + "|(?<PAREN>" + PAREN_PATTERN + ")"
@@ -72,7 +71,7 @@ public class CommonService {
         String title = data.get("path") + " - " + data.get("name");
 
         try {
-            FXMLLoader loader = setLoaderLocation("editor.fxml");
+            FXMLLoader loader = setLoaderLocation(DIRECTORY_VIEW + "editor.fxml");
             Parent root = loader.load();
             Scene scene = new Scene(root, 1680, 840);
             EditorSceneController editorSceneController = loader.getController();
@@ -95,7 +94,7 @@ public class CommonService {
         System.out.println("path : " + path);
 
         try {
-            FXMLLoader loader = setLoaderLocation("creator.fxml");
+            FXMLLoader loader = setLoaderLocation(DIRECTORY_VIEW + "creator.fxml");
             Parent root = loader.load();
             Scene scene = new Scene(root, 300, 150);
             CreatorSceneController creatorSceneController = loader.getController();
@@ -126,7 +125,7 @@ public class CommonService {
             ca_code.setStyleSpans(0, computeHighlighting(newText));
         });
         ca_code.setWrapText(true);
-        String styleSheet = Objects.requireNonNull(MainApplication.class.getResource("static/css/codeArea.css")).toExternalForm();
+        String styleSheet = Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_CSS + "codeArea.css")).toExternalForm();
         ca_code.getStylesheets().add(styleSheet);
         ca_code.replaceText(0, 0, code);
         ca_code.setBackground(new Background(new BackgroundFill(Paint.valueOf("#FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));

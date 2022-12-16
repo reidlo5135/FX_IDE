@@ -17,7 +17,7 @@
            <graphic>
                <ImageView fitWidth="80" fitHeight="82" pickOnBounds="true" preserveRatio="true" >
                    <image>
-                       <Image url="@static/image/folder.png"/>
+                       <Image url="@../image/folder.png"/>
                    </image>
                </ImageView>
            </graphic>
@@ -28,7 +28,7 @@
            <graphic>
                <ImageView fitWidth="80" fitHeight="82" pickOnBounds="true" preserveRatio="true">
                    <image>
-                       <Image url="@static/image/java.png"/>
+                       <Image url="@../image/java.png"/>
                    </image>
                </ImageView>
            </graphic>
