@@ -18,7 +18,7 @@
     <children>
         <MenuBar fx:id="mb_top" id="mb_top" prefWidth="1580" prefHeight="30" />
         <Label fx:id="label_name" id="label_name" visible="false" />
-        <TextArea fx:id="ta_code" id="ta_code" layoutX="380" layoutY="30" prefWidth="1300" prefHeight="500" />
+        <CodeArea fx:id="ca_code" id="ca_code" layoutX="380" layoutY="30" prefWidth="1300" prefHeight="500" />
         <Button fx:id="btn_compile" onAction="#onCompileButtonClick" id="btn_compile" layoutX="1580">
             <graphic>
                 <ImageView fitWidth="20.0" fitHeight="21.0" pickOnBounds="true" preserveRatio="true" >
@@ -28,7 +28,6 @@
                 </ImageView>
             </graphic>
         </Button>
-        <CodeArea fx:id="ca_code" id="ca_code" layoutY="530" prefWidth="1680" prefHeight="340" />
-        <TextArea fx:id="ta_result" id="ta_result" layoutY="530" prefWidth="1680" prefHeight="340" visible="false" />
+        <TextArea fx:id="ta_result" id="ta_result" layoutY="530" prefWidth="1680" prefHeight="340" />
     </children>
 </AnchorPane>
