@@ -29,14 +29,14 @@ public class CommonService {
     private static final String DIRECTORY_CSS = "css/";
     private static final String DIRECTORY_IMAGE = "image/";
     private static final String[] KEYWORDS = new String[] {
-            "abstract", "replacedert", "boolean", "break",
-            "switch", "case", "char", "clreplaced", "const",
-            "continue", "do", "enum", "extends", "final", "for", "while",
-            "goto", "if", "else", "extends", "implements", "import",
-            "instanceof", "class", "interface", "native", "new", "package",
-            "private", "protected", "public", "default", "return", "static",
-            "strictfp", "super", "synchronized", "this", "throw", "throws",
-            "transient", "try", "catch", "finally", "void", "volatile",
+            "abstract", "boolean", "break", "switch", "case",
+            "char", "clreplaced", "const", "continue", "do",
+            "enum", "extends", "final", "for", "while", "goto",
+            "if", "else", "extends", "implements", "import", "instanceof",
+            "class", "interface", "native", "new", "package",
+            "private", "protected", "public", "default",
+            "return", "static", "strictfp", "super", "synchronized", "volatile",
+            "this", "throw", "throws", "transient", "try", "catch", "finally", "void",
             "int", "double", "short", "byte", "long"
     };
     private static final String[] SECOND_KEYWORDS = new String[] {
@@ -135,6 +135,9 @@ public class CommonService {
             ca_code.setStyleSpans(0, computeHighlighting(newText));
             ca_code.setOnKeyPressed(event -> {
                 if(event.getCode().equals(KeyCode.ENTER)) {
+                    System.out.println("range : " + ca_code.getCaretSelectionBind().getRange());
+                    System.out.println("index : " + ca_code.getCaretSelectionBind().getParagraphIndex());
+                    System.out.println("-1 : " + ca_code.getText(ca_code.getCaretSelectionBind().getParagraphIndex() - 2));
                     ca_code.replaceText(ca_code.getCaretSelectionBind().getRange(), "\t\t");
                 }
             });
