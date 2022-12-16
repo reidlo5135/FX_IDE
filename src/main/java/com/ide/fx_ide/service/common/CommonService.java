@@ -34,12 +34,17 @@ public class CommonService {
             "enum", "extends", "final", "finally", "float",
             "for", "goto", "if", "implements", "import",
             "instanceof", "int", "interface", "long", "native",
-            "new", "package", "private", "protected", "public",
-            "return", "short", "static", "strictfp", "super",
+            "new", "package", "private", "protected", "public", "default",
+            "return", "short", "static", "strictfp", "super", "switch", "case",
             "switch", "synchronized", "this", "throw", "throws",
-            "transient", "try", "void", "volatile", "while"
+            "transient", "try", "void", "volatile", "while", "double", "float",
+            "Integer", "Double", "Float", "Short", "Boolean"
+    };
+    private static final String[] SECOND_KEYWORDS = new String[] {
+            "String", "System"
     };
     private static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
+    private static final String SECOND_KEYWORD_PATTERN = "\\b(" + String.join("|", SECOND_KEYWORDS) + ")\\b";
     private static final String PAREN_PATTERN = "\\(|\\)";
     private static final String BRACE_PATTERN = "\\{|\\}";
     private static final String BRACKET_PATTERN = "\\[|\\]";
@@ -48,6 +53,7 @@ public class CommonService {
     private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
     private static final Pattern PATTERN = Pattern.compile(
             "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
+                    + "|(?<SECOND>" + SECOND_KEYWORD_PATTERN + ")"
                     + "|(?<PAREN>" + PAREN_PATTERN + ")"
                     + "|(?<BRACE>" + BRACE_PATTERN + ")"
                     + "|(?<BRACKET>" + BRACKET_PATTERN + ")"
@@ -134,21 +140,22 @@ public class CommonService {
     private static StyleSpans<Collection<String>> computeHighlighting(String text) {
         Matcher matcher = PATTERN.matcher(text);
         int lastKwEnd = 0;
-        StyleSpansBuilder<Collection<String>> spansBuilder
-                = new StyleSpansBuilder<>();
+        StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
         while(matcher.find()) {
             String replaced =
                     matcher.group("KEYWORD") != null ? "keyword" :
-                            matcher.group("PAREN") != null ? "paren" :
-                                    matcher.group("BRACE") != null ? "brace" :
-                                            matcher.group("BRACKET") != null ? "bracket" :
-                                                    matcher.group("SEMICOLON") != null ? "semicolon" :
-                                                            matcher.group("STRING") != null ? "string" :
-                                                                    matcher.group("COMMENT") != null ? "comment" :
-                                                                            null;
+                            matcher.group("SECOND") != null ? "second" :
+                                matcher.group("PAREN") != null ? "paren" :
+                                        matcher.group("BRACE") != null ? "brace" :
+                                                matcher.group("BRACKET") != null ? "bracket" :
+                                                        matcher.group("SEMICOLON") != null ? "semicolon" :
+                                                                matcher.group("STRING") != null ? "string" :
+                                                                        matcher.group("COMMENT") != null ? "comment" :
+                                                                                null;
             spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
             spansBuilder.add(Collections.singleton(replaced), matcher.end() - matcher.start());
             lastKwEnd = matcher.end();
+            System.out.println("replaced : " + replaced);
         }
         spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
         return spansBuilder.create();

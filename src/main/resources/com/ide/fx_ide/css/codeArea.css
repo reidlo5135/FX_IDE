@@ -10,22 +10,32 @@
     -fx-fill: #CC7832;
     -fx-font-weight: bold;
 }
+
+.second {
+    -fx-fill: #0328fc;
+    -fx-font-weight: bold;
+}
+
 .semicolon {
     -fx-fill: #A9B7C6;
     -fx-font-weight: bold;
 }
+
 .paren {
     -fx-fill: #A9B7C6;
     -fx-font-weight: bold;
 }
+
 .bracket {
     -fx-fill: #A9B7C6;
     -fx-font-weight: bold;
 }
+
 .brace {
     -fx-fill: #A9B7C6;
     -fx-font-weight: bold;
 }
+
 .string {
     -fx-fill: #6A8759;
 }
