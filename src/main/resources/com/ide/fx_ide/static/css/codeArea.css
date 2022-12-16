@@ -1,3 +1,7 @@
+#ca_code {
+    -fx-font-size: 18px;
+}
+
 .ca_code .text {
     -fx-fill: #A9B7C6;
 }
