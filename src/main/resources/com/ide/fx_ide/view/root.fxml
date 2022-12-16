@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ide.fx_ide.controller.root.RootController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ide.fx_ide.controller.root.RootSceneController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -17,7 +17,7 @@
            <graphic>
                <ImageView fitWidth="80" fitHeight="82" pickOnBounds="true" preserveRatio="true" >
                    <image>
-                       <Image url="@static/image/folder.png"/>
+                       <Image url="@../image/folder.png"/>
                    </image>
                </ImageView>
            </graphic>
@@ -28,7 +28,7 @@
            <graphic>
                <ImageView fitWidth="80" fitHeight="82" pickOnBounds="true" preserveRatio="true">
                    <image>
-                       <Image url="@static/image/java.png"/>
+                       <Image url="@../image/java.png"/>
                    </image>
                </ImageView>
            </graphic>

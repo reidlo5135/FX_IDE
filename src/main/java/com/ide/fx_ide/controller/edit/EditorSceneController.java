@@ -12,19 +12,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class EditorController implements Initializable {
+public class EditorSceneController implements Initializable {
     @FXML private MenuBar mb_top;
     @FXML private Label label_name;
     @FXML private Button btn_compile;
     @FXML private TextArea ta_result;
     @FXML private CodeArea ca_code;
 
-    private static final CompilerService compilerService = new CompilerService();
-    private static final String[] DEFAULT_TOP_MENU = {"File", "Edit", "View", "Navigate", "Code", "Refactor", "Build", "Run", "Tools", "Git", "Window", "Help"};
     private static final String DEFAULT_EXTENSION = ".java";
+    private static final String[] DEFAULT_TOP_MENU = {"File", "Edit", "View", "Navigate", "Code", "Refactor", "Build", "Run", "Tools", "Git", "Window", "Help"};
+
+    private static CommonService commonService;
+    private static CompilerService compilerService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        commonService = new CommonService();
+        compilerService = new CompilerService();
         setDefaultTopMenu(mb_top);
     }
 
@@ -36,7 +40,7 @@ public class EditorController implements Initializable {
 
     public void initData(Map<String, String> data) {
         label_name.setText(data.get("name"));
-        CommonService.setCodeArea(ca_code, data.get("code"));
+        commonService.setCodeArea(ca_code, data.get("code"));
     }
 
     private static void setDefaultTopMenu(MenuBar menuBar) {

@@ -9,14 +9,6 @@
     -fx-font-size: 18px;
 }
 
-/*#ca_code {*/
-/*    -fx-font-family: monospace;*/
-/*    -fx-font-size: 20;*/
-/*    -fx-background-color: transparent;*/
-/*    -fx-highlight-fill: #ADFF2F;*/
-/*    -fx-highlight-text-fill: #B22222;*/
-/*}*/
-
 #ta_result {
     -fx-font-family: "sans-serif";
     -fx-font-size: 20px;

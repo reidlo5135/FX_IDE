@@ -14,15 +14,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class CreatorController implements Initializable {
+public class CreatorSceneController implements Initializable {
     @FXML private Label label_path;
     @FXML private TextField tf_name;
     @FXML private Button btn_create;
 
     private Stage stage;
+    private static FileService fileService;
+    private static CommonService commonService;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources) {
+        fileService = new FileService();
+        commonService = new CommonService();
+    }
 
     @FXML
     protected void onCreateButtonClick() {
@@ -35,16 +40,11 @@ public class CreatorController implements Initializable {
         data.put("name", name);
         data.put("code", code);
 
-        FileService.createNewFile(data);
-        CommonService.moveToEditScene(data, (Stage) btn_create.getScene().getWindow());
+        fileService.createNewFile(data);
+        commonService.moveToEditScene(data, (Stage) btn_create.getScene().getWindow());
     }
 
     public void setFilePath(String path) {
         label_path.setText(path);
-    }
-
-    private boolean isCapStart(String name) {
-        char[] chars = name.toCharArray();
-        return Character.isUpperCase(chars[0]);
     }
 }

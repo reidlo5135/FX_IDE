@@ -11,28 +11,32 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RootController implements Initializable {
+public class RootSceneController implements Initializable {
     @FXML private Button btn_select;
     @FXML private Label label_select;
     @FXML private Button btn_new;
     @FXML private Label label_new;
 
     private Stage stage;
-    private static final FileService fileService = new FileService();
+    private static FileService fileService;
+    private static CommonService commonService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        fileService = new FileService();
+        commonService = new CommonService();
+
         label_select.setText("Select .java file");
         label_new.setText("Create new .java file");
     }
 
     @FXML
     protected void onSelectButtonClick() {
-        CommonService.moveToEditScene(fileService.setFileChooser(stage), (Stage) btn_select.getScene().getWindow());
+        commonService.moveToEditScene(fileService.setFileChooser(stage), (Stage) btn_select.getScene().getWindow());
     }
 
     @FXML
     protected void onNewButtonClick() {
-        CommonService.moveToCreateScene(fileService.setDirectoryChooser(stage), (Stage) btn_select.getScene().getWindow());
+        commonService.moveToCreateScene(fileService.setDirectoryChooser(stage), (Stage) btn_select.getScene().getWindow());
     }
 }
