@@ -12,6 +12,11 @@
 }
 
 .second {
+    -fx-fill: #fc0303;
+    -fx-font-weight: bold;
+}
+
+.third {
     -fx-fill: #0328fc;
     -fx-font-weight: bold;
 }

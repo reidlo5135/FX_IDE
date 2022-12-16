@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -28,23 +29,25 @@ public class CommonService {
     private static final String DIRECTORY_CSS = "css/";
     private static final String DIRECTORY_IMAGE = "image/";
     private static final String[] KEYWORDS = new String[] {
-            "abstract", "replacedert", "boolean", "break", "byte",
-            "case", "catch", "char", "clreplaced", "const",
-            "continue", "default", "do", "double", "else",
-            "enum", "extends", "final", "finally", "float",
-            "for", "goto", "if", "implements", "import",
-            "instanceof", "int", "interface", "long", "native",
-            "new", "package", "private", "protected", "public", "default",
-            "return", "short", "static", "strictfp", "super", "switch", "case",
-            "switch", "synchronized", "this", "throw", "throws",
-            "transient", "try", "void", "volatile", "while", "double", "float",
-            "Integer", "Double", "Float", "Short", "Boolean"
+            "abstract", "replacedert", "boolean", "break",
+            "switch", "case", "char", "clreplaced", "const",
+            "continue", "do", "enum", "extends", "final", "for", "while",
+            "goto", "if", "else", "extends", "implements", "import",
+            "instanceof", "class", "interface", "native", "new", "package",
+            "private", "protected", "public", "default", "return", "static",
+            "strictfp", "super", "synchronized", "this", "throw", "throws",
+            "transient", "try", "catch", "finally", "void", "volatile",
+            "int", "double", "short", "byte", "long"
     };
     private static final String[] SECOND_KEYWORDS = new String[] {
-            "String", "System"
+            "String"
+    };
+    private static final String[] THIRD_KEYWORDS = new String[] {
+            "in", "out"
     };
     private static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
     private static final String SECOND_KEYWORD_PATTERN = "\\b(" + String.join("|", SECOND_KEYWORDS) + ")\\b";
+    private static final String THIRD_KEYWORD_PATTERN  = "\\b(" + String.join("|", THIRD_KEYWORDS) + ")\\b";
     private static final String PAREN_PATTERN = "\\(|\\)";
     private static final String BRACE_PATTERN = "\\{|\\}";
     private static final String BRACKET_PATTERN = "\\[|\\]";
@@ -54,6 +57,7 @@ public class CommonService {
     private static final Pattern PATTERN = Pattern.compile(
             "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
                     + "|(?<SECOND>" + SECOND_KEYWORD_PATTERN + ")"
+                    + "|(?<THIRD>" + THIRD_KEYWORD_PATTERN + ")"
                     + "|(?<PAREN>" + PAREN_PATTERN + ")"
                     + "|(?<BRACE>" + BRACE_PATTERN + ")"
                     + "|(?<BRACKET>" + BRACKET_PATTERN + ")"
@@ -129,12 +133,17 @@ public class CommonService {
         ca_code.setParagraphGraphicFactory(LineNumberFactory.get(ca_code));
         ca_code.textProperty().addListener((obs, oldText, newText) -> {
             ca_code.setStyleSpans(0, computeHighlighting(newText));
+            ca_code.setOnKeyPressed(event -> {
+                if(event.getCode().equals(KeyCode.ENTER)) {
+                    ca_code.replaceText(ca_code.getCaretSelectionBind().getRange(), "\t\t");
+                }
+            });
         });
         ca_code.setWrapText(true);
         String styleSheet = Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_CSS + "codeArea.css")).toExternalForm();
         ca_code.getStylesheets().add(styleSheet);
         ca_code.replaceText(0, 0, code);
-        ca_code.setBackground(new Background(new BackgroundFill(Paint.valueOf("#FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));
+        ca_code.setBackground(new Background(new BackgroundFill(Paint.valueOf("#FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));;
     }
 
     private static StyleSpans<Collection<String>> computeHighlighting(String text) {
@@ -145,17 +154,17 @@ public class CommonService {
             String replaced =
                     matcher.group("KEYWORD") != null ? "keyword" :
                             matcher.group("SECOND") != null ? "second" :
-                                matcher.group("PAREN") != null ? "paren" :
-                                        matcher.group("BRACE") != null ? "brace" :
-                                                matcher.group("BRACKET") != null ? "bracket" :
-                                                        matcher.group("SEMICOLON") != null ? "semicolon" :
-                                                                matcher.group("STRING") != null ? "string" :
-                                                                        matcher.group("COMMENT") != null ? "comment" :
-                                                                                null;
+                                    matcher.group("THIRD") != null ? "third" :
+                                                matcher.group("PAREN") != null ? "paren" :
+                                                    matcher.group("BRACE") != null ? "brace" :
+                                                            matcher.group("BRACKET") != null ? "bracket" :
+                                                                    matcher.group("SEMICOLON") != null ? "semicolon" :
+                                                                            matcher.group("STRING") != null ? "string" :
+                                                                                    matcher.group("COMMENT") != null ? "comment" :
+                                                                                            null;
             spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
             spansBuilder.add(Collections.singleton(replaced), matcher.end() - matcher.start());
             lastKwEnd = matcher.end();
-            System.out.println("replaced : " + replaced);
         }
         spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
         return spansBuilder.create();
