@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class EditorController implements Initializable {
+public class EditorSceneController implements Initializable {
     @FXML private MenuBar mb_top;
     @FXML private Label label_name;
     @FXML private Button btn_compile;

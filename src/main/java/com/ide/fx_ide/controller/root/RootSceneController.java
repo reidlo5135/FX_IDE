@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RootController implements Initializable {
+public class RootSceneController implements Initializable {
     @FXML private Button btn_select;
     @FXML private Label label_select;
     @FXML private Button btn_new;

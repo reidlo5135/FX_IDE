@@ -1,8 +1,8 @@
 package com.ide.fx_ide.service.common;
 
 import com.ide.fx_ide.MainApplication;
-import com.ide.fx_ide.controller.edit.CreatorController;
-import com.ide.fx_ide.controller.edit.EditorController;
+import com.ide.fx_ide.controller.edit.CreatorSceneController;
+import com.ide.fx_ide.controller.edit.EditorSceneController;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -75,8 +75,8 @@ public class CommonService {
             FXMLLoader loader = setLoaderLocation("editor.fxml");
             Parent root = loader.load();
             Scene scene = new Scene(root, 1680, 840);
-            EditorController editorController = loader.getController();
-            editorController.initData(data);
+            EditorSceneController editorSceneController = loader.getController();
+            editorSceneController.initData(data);
 
             Stage stage_editor = new Stage();
             stage_editor.setScene(scene);
@@ -98,8 +98,8 @@ public class CommonService {
             FXMLLoader loader = setLoaderLocation("creator.fxml");
             Parent root = loader.load();
             Scene scene = new Scene(root, 300, 150);
-            CreatorController creatorController = loader.getController();
-            creatorController.setFilePath(path);
+            CreatorSceneController creatorSceneController = loader.getController();
+            creatorSceneController.setFilePath(path);
 
             Stage stage_creator = new Stage();
             stage_creator.setScene(scene);

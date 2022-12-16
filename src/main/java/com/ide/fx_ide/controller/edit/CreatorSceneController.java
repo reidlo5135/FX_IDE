@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class CreatorController implements Initializable {
+public class CreatorSceneController implements Initializable {
     @FXML private Label label_path;
     @FXML private TextField tf_name;
     @FXML private Button btn_create;
