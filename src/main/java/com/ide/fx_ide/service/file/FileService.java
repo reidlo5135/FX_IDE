@@ -38,7 +38,7 @@ public class FileService {
         return file.getPath();
     }
 
-    public static void createNewFile(Map<String, String> data) {
+    public void createNewFile(Map<String, String> data) {
         System.out.println("createNewFile data : " + data);
         String path = data.get("path") + "/" + data.get("name") + EXTENSION;
 

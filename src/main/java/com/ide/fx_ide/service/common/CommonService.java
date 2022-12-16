@@ -68,7 +68,7 @@ public class CommonService {
         stage.getIcons().add(new Image(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_IMAGE + favicon)).toString()));
     }
 
-    public static void moveToEditScene(Map<String, String> data, Stage stage_previous) {
+    public void moveToEditScene(Map<String, String> data, Stage stage_previous) {
         String title = data.get("path") + " - " + data.get("name");
 
         try {
@@ -91,7 +91,7 @@ public class CommonService {
         }
     }
 
-    public static void moveToCreateScene(String path, Stage stage_previous) {
+    public void moveToCreateScene(String path, Stage stage_previous) {
         System.out.println("path : " + path);
 
         try {
@@ -120,7 +120,7 @@ public class CommonService {
         return loader;
     }
 
-    public static void setCodeArea(CodeArea ca_code, String code) {
+    public void setCodeArea(CodeArea ca_code, String code) {
         ca_code.setParagraphGraphicFactory(LineNumberFactory.get(ca_code));
         ca_code.textProperty().addListener((obs, oldText, newText) -> {
             ca_code.setStyleSpans(0, computeHighlighting(newText));
@@ -153,5 +153,10 @@ public class CommonService {
         }
         spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
         return spansBuilder.create();
+    }
+
+    private boolean isCapStart(String name) {
+        char[] chars = name.toCharArray();
+        return Character.isUpperCase(chars[0]);
     }
 }
