@@ -1,4 +1,4 @@
-package com.ide.fx_ide.controller.edit;
+package com.ide.fx_ide.controller.editor;
 
 import com.ide.fx_ide.service.common.CommonService;
 import com.ide.fx_ide.service.file.FileService;
