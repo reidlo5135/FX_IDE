@@ -28,7 +28,7 @@ public class CommonService {
     private static final String DIRECTORY_VIEW = "view/";
     private static final String DIRECTORY_CSS = "css/";
     private static final String DIRECTORY_IMAGE = "image/";
-    private static final String[] KEYWORDS = new String[] {
+    private static final String[] FIRST_KEYWORDS = new String[] {
             "abstract", "boolean", "break", "switch", "case",
             "char", "clreplaced", "const", "continue", "do",
             "enum", "extends", "final", "for", "while", "goto",
@@ -45,7 +45,7 @@ public class CommonService {
     private static final String[] THIRD_KEYWORDS = new String[] {
             "in", "out"
     };
-    private static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
+    private static final String FIRST_KEYWORD_PATTERN = "\\b(" + String.join("|", FIRST_KEYWORDS) + ")\\b";
     private static final String SECOND_KEYWORD_PATTERN = "\\b(" + String.join("|", SECOND_KEYWORDS) + ")\\b";
     private static final String THIRD_KEYWORD_PATTERN  = "\\b(" + String.join("|", THIRD_KEYWORDS) + ")\\b";
     private static final String PAREN_PATTERN = "\\(|\\)";
@@ -55,7 +55,7 @@ public class CommonService {
     private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
     private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
     private static final Pattern PATTERN = Pattern.compile(
-            "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
+            "(?<FIRST>" + FIRST_KEYWORD_PATTERN + ")"
                     + "|(?<SECOND>" + SECOND_KEYWORD_PATTERN + ")"
                     + "|(?<THIRD>" + THIRD_KEYWORD_PATTERN + ")"
                     + "|(?<PAREN>" + PAREN_PATTERN + ")"
@@ -155,7 +155,7 @@ public class CommonService {
         StyleSpansBuilder<Collection<String>> spansBuilder = new StyleSpansBuilder<>();
         while(matcher.find()) {
             String replaced =
-                    matcher.group("KEYWORD") != null ? "keyword" :
+                    matcher.group("FIRST") != null ? "keyword" :
                             matcher.group("SECOND") != null ? "second" :
                                     matcher.group("THIRD") != null ? "third" :
                                                 matcher.group("PAREN") != null ? "paren" :
@@ -171,10 +171,5 @@ public class CommonService {
         }
         spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
         return spansBuilder.create();
-    }
-
-    private boolean isCapStart(String name) {
-        char[] chars = name.toCharArray();
-        return Character.isUpperCase(chars[0]);
     }
 }
