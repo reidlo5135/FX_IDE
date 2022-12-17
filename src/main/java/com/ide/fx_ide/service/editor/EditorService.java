@@ -60,6 +60,14 @@ public class EditorService {
 
     public void setCodeArea(CodeArea ca_code, String code) {
         ca_code.setParagraphGraphicFactory(LineNumberFactory.get(ca_code));
+        setListener(ca_code);
+        ca_code.setWrapText(true);
+        ca_code.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_CSS + "codeArea.css")).toExternalForm());
+        ca_code.replaceText(0, 0, code);
+        ca_code.setBackground(new Background(new BackgroundFill(Paint.valueOf("#FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    private void setListener(CodeArea ca_code) {
         ca_code.textProperty().addListener((obs, oldText, newText) -> {
             ca_code.setStyleSpans(0, computeHighlighting(newText));
             ca_code.setOnKeyPressed(event -> {
@@ -70,12 +78,14 @@ public class EditorService {
                     ca_code.replaceText(ca_code.getCaretSelectionBind().getRange(), "\t\t");
                 }
             });
+
+//            String changedText = ca_code.getText(ca_code.getCaretSelectionBind().getParagraphIndex());
+//            System.out.println("changedText : " + changedText);
+//            System.out.println("isEquals : " + changedText.equals("{"));
+//            if(changedText.equals("{")) {
+//                ca_code.replaceText(ca_code.getCaretSelectionBind().getRange(), "\t{\n}");
+//            }
         });
-        ca_code.setWrapText(true);
-        String styleSheet = Objects.requireNonNull(MainApplication.class.getResource(DIRECTORY_CSS + "codeArea.css")).toExternalForm();
-        ca_code.getStylesheets().add(styleSheet);
-        ca_code.replaceText(0, 0, code);
-        ca_code.setBackground(new Background(new BackgroundFill(Paint.valueOf("#FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));;
     }
 
     private static StyleSpans<Collection<String>> computeHighlighting(String text) {

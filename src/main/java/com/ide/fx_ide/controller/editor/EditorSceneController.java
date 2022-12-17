@@ -38,7 +38,7 @@ public class EditorSceneController implements Initializable {
     @FXML
     protected void onCompileButtonClick() {
         List<String> compileResult = compilerService.compileAfterConvertFile(label_name.getText() + DEFAULT_EXTENSION, ca_code.getText());
-        ta_result.setText(compilerService.convertCompileResultToString(compileResult));
+        ta_result.setText(compilerService.convertCompileResultToString(label_name.getText(), compileResult));
     }
 
     public void initData(Map<String, String> data) {
