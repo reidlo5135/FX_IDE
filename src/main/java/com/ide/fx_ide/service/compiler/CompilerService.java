@@ -98,12 +98,15 @@ public class CompilerService {
         return null;
     }
 
-    public String convertCompileResultToString(List<String> compileResult) {
+    public String convertCompileResultToString(String className, List<String> compileResult) {
         StringBuilder sb = new StringBuilder();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("a HH:mm:ss");
 
-        sb.append(simpleDateFormat.format(new Date())).append(": Executing ':Main.main()'...");
-        sb.append("\n\n\n");
+        sb.append(simpleDateFormat.format(new Date()))
+                .append(": Executing ':")
+                .append(className)
+                .append(".main()'...")
+                .append("\n\n\n");
 
         for(String str : compileResult) {
             System.out.println("str : " + str);
