@@ -102,11 +102,6 @@ public class EditorService {
                     ca_code.insertText(position, "}");
                     break;
                 }
-                if(matcher.group(0).equals("(")) {
-                    System.out.println("@@@@");
-                    ca_code.insertText(position, ")");
-                    break;
-                }
 //                if(matcher.group(1) == null) break;
             }
 
@@ -128,7 +123,7 @@ public class EditorService {
 //            }
 //            if(text.contains("(")) {
 //                ca_code.insertText(position, ")");
-//            })
+//            }
         });
     }
 
