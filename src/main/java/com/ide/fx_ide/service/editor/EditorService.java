@@ -41,8 +41,11 @@ public class EditorService {
     private static final String SECOND_KEYWORD_PATTERN = "\\b(" + String.join("|", SECOND_KEYWORDS) + ")\\b";
     private static final String THIRD_KEYWORD_PATTERN  = "\\b(" + String.join("|", THIRD_KEYWORDS) + ")\\b";
     private static final String PAREN_PATTERN = "\\(|\\)";
+    private static final String TEXT_PAREN_PATTERN = "(.*?)[{]";
     private static final String BRACE_PATTERN = "\\{|\\}";
+    private static final String TEXT_BRACE_PATTERN = "(.*?)[(]";
     private static final String BRACKET_PATTERN = "\\[|\\]";
+    private static final String TEXT_BRACKET_PATTERN = "(.*?)[\\[]";
     private static final String SEMICOLON_PATTERN = "\\;";
     private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
     private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
@@ -58,8 +61,9 @@ public class EditorService {
                     + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
     private static final Pattern TEXT_PATTERN = Pattern.compile(
-        "(?<BRACE>" + "(.*?)[{]" + ")"
-                + "|(?<PAREN>" + "(.*?)[(]" + ")"
+        "(?<BRACE>" + TEXT_BRACE_PATTERN + ")"
+                + "|(?<PAREN>" + TEXT_PAREN_PATTERN + ")"
+                + "|(?<BRACKET>" + TEXT_BRACKET_PATTERN + ")"
     );
 
     public void setCodeArea(CodeArea ca_code, String code) {
@@ -89,13 +93,18 @@ public class EditorService {
             int position = ca_code.getAbsolutePosition(ca_code.getCaretSelectionBind().getParagraphIndex(), ca_code.getCaretColumn());
             System.out.println("position : " + position);
 
-            Matcher matcher = TEXT_PATTERN.matcher(text.trim());
+            Matcher matcher = TEXT_PATTERN.matcher(text.replaceAll(" ", ""));
             while (matcher.find()) {
                 if(matcher.matches()) {
                     String group = matcher.group();
                     System.out.println("group : " + group);
-                    if(group.contains("{}") || group.contains("()")) break;
-                    if(group.contains("{}") && group.contains("(")) break;
+                    if(group.contains("{}") || group.contains("()")) {
+                        if(group.contains("(){")) {
+                            ca_code.insertText(position, "\n\n\t}");
+                        } else break;
+                    }
+                    if(group.contains("{") && group.contains("(")) break;
+                    if(group.contains("{") && group.contains("[")) break;
                     if(group.contains("{")) {
                         System.out.println("{{{{{");
                         ca_code.insertText(position, "\n\n}");
@@ -106,31 +115,13 @@ public class EditorService {
                         ca_code.insertText(position, ")");
                         break;
                     }
+                    if(group.contains("[")) {
+                        System.out.println("[[[[[");
+                        ca_code.insertText(position, "]");
+                        break;
+                    }
                 }
             }
-//            if(text.contains("(){}")) {
-//                System.out.println(text);
-//                return;
-//            }
-//            if(text.trim().contains("(){")) {
-//                System.out.println("2222");
-//                System.out.println(text);
-//                ca_code.insertText(position, "\n\n\t}");
-//            }
-//            if(text.contains("({")) {
-//                System.out.println("@@@@");
-//                return;
-//            }
-//            if(text.contains("{}") || text.contains("()")) {
-//                System.out.println(text);
-//                return;
-//            }
-//            if(text.contains("{")) {
-//                ca_code.insertText(position, "}");
-//            }
-//            if(text.contains("(")) {
-//                ca_code.insertText(position, ")");
-//            }
         });
     }
 
