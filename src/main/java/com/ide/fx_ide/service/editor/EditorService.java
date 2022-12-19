@@ -41,7 +41,9 @@ public class EditorService {
     private static final String SECOND_KEYWORD_PATTERN = "\\b(" + String.join("|", SECOND_KEYWORDS) + ")\\b";
     private static final String THIRD_KEYWORD_PATTERN  = "\\b(" + String.join("|", THIRD_KEYWORDS) + ")\\b";
     private static final String PAREN_PATTERN = "\\(|\\)";
+    private static final String TEXT_PAREN_PATTERN = "(.*?)[{]";
     private static final String BRACE_PATTERN = "\\{|\\}";
+    private static final String TEXT_BRACE_PATTERN = "(.*?)[(]";
     private static final String BRACKET_PATTERN = "\\[|\\]";
     private static final String SEMICOLON_PATTERN = "\\;";
     private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
@@ -58,8 +60,8 @@ public class EditorService {
                     + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
     private static final Pattern TEXT_PATTERN = Pattern.compile(
-        "(?<BRACE>" + "(.*?)[{]" + ")"
-                + "|(?<PAREN>" + "(.*?)[(]" + ")"
+        "(?<BRACE>" + TEXT_BRACE_PATTERN + ")"
+                + "|(?<PAREN>" + TEXT_PAREN_PATTERN + ")"
     );
 
     public void setCodeArea(CodeArea ca_code, String code) {
