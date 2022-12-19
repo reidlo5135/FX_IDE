@@ -45,6 +45,7 @@ public class EditorService {
     private static final String BRACE_PATTERN = "\\{|\\}";
     private static final String TEXT_BRACE_PATTERN = "(.*?)[(]";
     private static final String BRACKET_PATTERN = "\\[|\\]";
+    private static final String TEXT_BRACKET_PATTERN = "(.*?)[\\[]";
     private static final String SEMICOLON_PATTERN = "\\;";
     private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
     private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
@@ -62,6 +63,7 @@ public class EditorService {
     private static final Pattern TEXT_PATTERN = Pattern.compile(
         "(?<BRACE>" + TEXT_BRACE_PATTERN + ")"
                 + "|(?<PAREN>" + TEXT_PAREN_PATTERN + ")"
+                + "|(?<BRACKET>" + TEXT_BRACKET_PATTERN + ")"
     );
 
     public void setCodeArea(CodeArea ca_code, String code) {
@@ -102,6 +104,7 @@ public class EditorService {
                         } else break;
                     }
                     if(group.contains("{") && group.contains("(")) break;
+                    if(group.contains("{") && group.contains("[")) break;
                     if(group.contains("{")) {
                         System.out.println("{{{{{");
                         ca_code.insertText(position, "\n\n}");
@@ -110,6 +113,11 @@ public class EditorService {
                     if(group.contains("(")) {
                         System.out.println("{{{{{");
                         ca_code.insertText(position, ")");
+                        break;
+                    }
+                    if(group.contains("[")) {
+                        System.out.println("[[[[[");
+                        ca_code.insertText(position, "]");
                         break;
                     }
                 }
