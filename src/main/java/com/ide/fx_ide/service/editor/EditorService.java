@@ -93,36 +93,40 @@ public class EditorService {
             int position = ca_code.getAbsolutePosition(ca_code.getCaretSelectionBind().getParagraphIndex(), ca_code.getCaretColumn());
             System.out.println("position : " + position);
 
-            Matcher matcher = TEXT_PATTERN.matcher(text.replaceAll(" ", ""));
-            while (matcher.find()) {
-                if(matcher.matches()) {
-                    String group = matcher.group();
-                    System.out.println("group : " + group);
-                    if(group.contains("{}") || group.contains("()")) {
-                        if(group.contains("(){")) {
-                            ca_code.insertText(position, "\n\n\t}");
-                        } else break;
-                    }
-                    if(group.contains("{") && group.contains("(")) break;
-                    if(group.contains("{") && group.contains("[")) break;
-                    if(group.contains("{")) {
-                        System.out.println("{{{{{");
-                        ca_code.insertText(position, "\n\n}");
-                        break;
-                    }
-                    if(group.contains("(")) {
-                        System.out.println("{{{{{");
-                        ca_code.insertText(position, ")");
-                        break;
-                    }
-                    if(group.contains("[")) {
-                        System.out.println("[[[[[");
-                        ca_code.insertText(position, "]");
-                        break;
-                    }
+            computeAutoComplete(ca_code, text, position);
+        });
+    }
+
+    private static void computeAutoComplete(CodeArea ca_code, String text, int position) {
+        Matcher matcher = TEXT_PATTERN.matcher(text.replaceAll(" ", ""));
+        while (matcher.find()) {
+            if(matcher.matches()) {
+                String group = matcher.group();
+                System.out.println("group : " + group);
+                if(group.contains("{}") || group.contains("()")) {
+                    if(group.contains("(){")) {
+                        ca_code.insertText(position, "\n\n\t}");
+                    } else break;
+                }
+                if(group.contains("{") && group.contains("(")) break;
+                if(group.contains("{") && group.contains("[")) break;
+                if(group.contains("{")) {
+                    System.out.println("{{{{{");
+                    ca_code.insertText(position, "\n\n}");
+                    break;
+                }
+                if(group.contains("(")) {
+                    System.out.println("{{{{{");
+                    ca_code.insertText(position, ")");
+                    break;
+                }
+                if(group.contains("[")) {
+                    System.out.println("[[[[[");
+                    ca_code.insertText(position, "]");
+                    break;
                 }
             }
-        });
+        }
     }
 
     private static StyleSpans<Collection<String>> computeHighlighting(String text) {
