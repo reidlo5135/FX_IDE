@@ -89,13 +89,17 @@ public class EditorService {
             int position = ca_code.getAbsolutePosition(ca_code.getCaretSelectionBind().getParagraphIndex(), ca_code.getCaretColumn());
             System.out.println("position : " + position);
 
-            Matcher matcher = TEXT_PATTERN.matcher(text.trim());
+            Matcher matcher = TEXT_PATTERN.matcher(text.replaceAll(" ", ""));
             while (matcher.find()) {
                 if(matcher.matches()) {
                     String group = matcher.group();
                     System.out.println("group : " + group);
-                    if(group.contains("{}") || group.contains("()")) break;
-                    if(group.contains("{}") && group.contains("(")) break;
+                    if(group.contains("{}") || group.contains("()")) {
+                        if(group.contains("(){")) {
+                            ca_code.insertText(position, "\n\n\t}");
+                        } else break;
+                    }
+                    if(group.contains("{") && group.contains("(")) break;
                     if(group.contains("{")) {
                         System.out.println("{{{{{");
                         ca_code.insertText(position, "\n\n}");
@@ -108,29 +112,6 @@ public class EditorService {
                     }
                 }
             }
-//            if(text.contains("(){}")) {
-//                System.out.println(text);
-//                return;
-//            }
-//            if(text.trim().contains("(){")) {
-//                System.out.println("2222");
-//                System.out.println(text);
-//                ca_code.insertText(position, "\n\n\t}");
-//            }
-//            if(text.contains("({")) {
-//                System.out.println("@@@@");
-//                return;
-//            }
-//            if(text.contains("{}") || text.contains("()")) {
-//                System.out.println(text);
-//                return;
-//            }
-//            if(text.contains("{")) {
-//                ca_code.insertText(position, "}");
-//            }
-//            if(text.contains("(")) {
-//                ca_code.insertText(position, ")");
-//            }
         });
     }
 
