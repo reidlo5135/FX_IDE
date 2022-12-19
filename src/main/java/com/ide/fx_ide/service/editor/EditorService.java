@@ -85,16 +85,10 @@ public class EditorService {
 
             String text = ca_code.getText(ca_code.getCurrentParagraph());
             System.out.println("text : " + text);
-//            System.out.println("isContainsBraceLEFT : " + text.contains("{"));
-//            System.out.println("isContainsBraceRIGHT : " + text.contains("}"));
-//            System.out.println("isContainsBRace : " + text.contains("{}"));
-//            System.out.println("test : " + (text.contains("()") && text.contains("{")));
 
             int position = ca_code.getAbsolutePosition(ca_code.getCaretSelectionBind().getParagraphIndex(), ca_code.getCaretColumn());
             System.out.println("position : " + position);
 
-//            Pattern pattern = Pattern.compile("(.*?)[{]");
-//            Matcher matcher = pattern.matcher(text.trim());
             Matcher matcher = TEXT_PATTERN.matcher(text.trim());
             while (matcher.find()) {
                 if(matcher.matches()) {
