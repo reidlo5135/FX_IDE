@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public class CompilerService {
 
@@ -45,16 +44,10 @@ public class CompilerService {
     private static List<String> compileFile(File file) {
         try {
             String[] commands = new String[] {"java " + file.getName(),"exit"};
-
             ProcessBuilder pb = new ProcessBuilder("cmd");
-            Map<String, String> env = pb.environment();
-
             pb.redirectErrorStream(true);
             pb.directory(new File("C:\\.rde\\temp\\" + CommonService.setDateTimeFormat()));
-            System.out.println("PB environment : " + env);
-
             Process p = pb.start();
-
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
 
             for(String cmd : commands) {
