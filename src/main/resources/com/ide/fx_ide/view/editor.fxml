@@ -8,8 +8,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.control.Label?>
-
 <?import org.fxmisc.richtext.CodeArea?>
+
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ide.fx_ide.controller.editor.EditorSceneController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
