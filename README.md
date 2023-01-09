@@ -14,7 +14,7 @@
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/Intellij IDEA-000000?style=for-the-badge&logo=IntelliJ Idea&logoColor=white"></span>
 
-- Client - Java 11, JavaFX 0.0.10, CSS3, RichTextFx 0.11.0
+- Client - Java 11, JavaFX 0.0.10, CSS3, FXML, RichTextFx 0.11.0
 - Version Control - Git, Github
 - IDE - IntelliJ IDEA Ultimate
 
