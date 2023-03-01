@@ -1,7 +1,7 @@
 # **FX_IDE**
 개인 프로젝트<br>
 
-## **FX_IDE?**
+## **FX_IDE란?**
 <b>Java</b> 언어에 한하여 사용자가 입력한 코드를 컴파일 후 결과를 출력해주는 JavaFX Application 입니다.<br>
 
 ## **<b>사용기술</b>**
